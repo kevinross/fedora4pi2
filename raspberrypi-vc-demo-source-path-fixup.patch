@@ -1,0 +1,112 @@
+From 44f2f4422490a9c583992e1adef3442227b1e36e Mon Sep 17 00:00:00 2001
+From: Andrew Greene <agreene@newzealand.proximity.on.ca>
+Date: Mon, 31 Mar 2014 13:26:52 -0400
+Subject: [PATCH] raspberrypi-vc-demo-source-path-fixup
+
+---
+ opt/vc/src/hello_pi/Makefile.include            | 4 ++--
+ opt/vc/src/hello_pi/hello_audio/audio.c         | 2 +-
+ opt/vc/src/hello_pi/hello_dispmanx/dispmanx.c   | 2 +-
+ opt/vc/src/hello_pi/hello_triangle/triangle.c   | 8 ++++----
+ opt/vc/src/hello_pi/hello_triangle2/triangle2.c | 8 ++++----
+ opt/vc/src/hello_pi/hello_video/video.c         | 2 +-
+ 6 files changed, 13 insertions(+), 13 deletions(-)
+
+diff --git a/opt/vc/src/hello_pi/Makefile.include b/opt/vc/src/hello_pi/Makefile.include
+index 91cc681..7f8d129 100644
+--- a/opt/vc/src/hello_pi/Makefile.include
++++ b/opt/vc/src/hello_pi/Makefile.include
+@@ -1,9 +1,9 @@
+ 
+ CFLAGS+=-DSTANDALONE -D__STDC_CONSTANT_MACROS -D__STDC_LIMIT_MACROS -DTARGET_POSIX -D_LINUX -fPIC -DPIC -D_REENTRANT -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -U_FORTIFY_SOURCE -Wall -g -DHAVE_LIBOPENMAX=2 -DOMX -DOMX_SKIP64BIT -ftree-vectorize -pipe -DUSE_EXTERNAL_OMX -DHAVE_LIBBCM_HOST -DUSE_EXTERNAL_LIBBCM_HOST -DUSE_VCHIQ_ARM -Wno-psabi
+ 
+-LDFLAGS+=-L$(SDKSTAGE)/opt/vc/lib/ -lGLESv2 -lEGL -lopenmaxil -lbcm_host -lvcos -lvchiq_arm -lpthread -lrt -lm -L../libs/ilclient -L../libs/vgfont
++LDFLAGS+=-L$(SDKSTAGE)/usr/lib/vc -lGLESv2 -lEGL -lopenmaxil -lbcm_host -lvcos -lvchiq_arm -lpthread -lrt -lm -L../libs/ilclient -L../libs/vgfont
+ 
+-INCLUDES+=-I$(SDKSTAGE)/opt/vc/include/ -I$(SDKSTAGE)/opt/vc/include/interface/vcos/pthreads -I$(SDKSTAGE)/opt/vc/include/interface/vmcs_host/linux -I./ -I../libs/ilclient -I../libs/vgfont
++INCLUDES+=-I$(SDKSTAGE)/usr/include/vc -I$(SDKSTAGE)/usr/include/vc/interface/vcos/pthreads -I$(SDKSTAGE)/usr/include/vc/interface/vmcs_host/linux -I./ -I../libs/ilclient -I../libs/vgfont
+ 
+ all: $(BIN) $(LIB)
+ 
+diff --git a/opt/vc/src/hello_pi/hello_audio/audio.c b/opt/vc/src/hello_pi/hello_audio/audio.c
+index ebbcbce..12673f8 100644
+--- a/opt/vc/src/hello_pi/hello_audio/audio.c
++++ b/opt/vc/src/hello_pi/hello_audio/audio.c
+@@ -34,7 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ #include <unistd.h>
+ #include <semaphore.h>
+ 
+-#include "bcm_host.h"
++#include <bcm_host.h>
+ #include "ilclient.h"
+ 
+ #define N_WAVE          1024    /* dimension of Sinewave[] */
+diff --git a/opt/vc/src/hello_pi/hello_dispmanx/dispmanx.c b/opt/vc/src/hello_pi/hello_dispmanx/dispmanx.c
+index 1f23b32..1bd1670 100644
+--- a/opt/vc/src/hello_pi/hello_dispmanx/dispmanx.c
++++ b/opt/vc/src/hello_pi/hello_dispmanx/dispmanx.c
+@@ -34,7 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ #include <unistd.h>
+ #include <sys/time.h>
+ 
+-#include "bcm_host.h"
++#include <bcm_host.h>
+ 
+ #define WIDTH   200
+ #define HEIGHT  200
+diff --git a/opt/vc/src/hello_pi/hello_triangle/triangle.c b/opt/vc/src/hello_pi/hello_triangle/triangle.c
+index ce19b38..6e31c16 100644
+--- a/opt/vc/src/hello_pi/hello_triangle/triangle.c
++++ b/opt/vc/src/hello_pi/hello_triangle/triangle.c
+@@ -34,11 +34,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ #include <assert.h>
+ #include <unistd.h>
+ 
+-#include "bcm_host.h"
++#include <bcm_host.h>
+ 
+-#include "GLES/gl.h"
+-#include "EGL/egl.h"
+-#include "EGL/eglext.h"
++#include <GLES/gl.h>
++#include <EGL/egl.h>
++#include <EGL/eglext.h>
+ 
+ #include "cube_texture_and_coords.h"
+ 
+diff --git a/opt/vc/src/hello_pi/hello_triangle2/triangle2.c b/opt/vc/src/hello_pi/hello_triangle2/triangle2.c
+index bc68c51..67902ee 100644
+--- a/opt/vc/src/hello_pi/hello_triangle2/triangle2.c
++++ b/opt/vc/src/hello_pi/hello_triangle2/triangle2.c
+@@ -36,11 +36,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ #include <assert.h>
+ #include <unistd.h>
+ 
+-#include "bcm_host.h"
++#include <bcm_host.h>
+ 
+-#include "GLES2/gl2.h"
+-#include "EGL/egl.h"
+-#include "EGL/eglext.h"
++#include <GLES2/gl2.h>
++#include <EGL/egl.h>
++#include <EGL/eglext.h>
+ 
+ typedef struct
+ {
+diff --git a/opt/vc/src/hello_pi/hello_video/video.c b/opt/vc/src/hello_pi/hello_video/video.c
+index 8441caf..8ba0dfc 100644
+--- a/opt/vc/src/hello_pi/hello_video/video.c
++++ b/opt/vc/src/hello_pi/hello_video/video.c
+@@ -31,7 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ #include <stdlib.h>
+ #include <string.h>
+ 
+-#include "bcm_host.h"
++#include <bcm_host.h>
+ #include "ilclient.h"
+ 
+ static int video_decode_test(char *filename)
+-- 
+1.8.3.1
+
