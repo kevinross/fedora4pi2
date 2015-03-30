@@ -1,0 +1,6 @@
+[submodule "raspberrypi-vc/raspberrypi-firmware"]
+	path = raspberrypi-vc/raspberrypi-firmware
+	url = git://github.com/raspberrypi/firmware.git
+[submodule "raspberrypi-vc/raspberrypi-userland"]
+	path = raspberrypi-vc/raspberrypi-userland
+	url = git://github.com/raspberrypi/userland.git
