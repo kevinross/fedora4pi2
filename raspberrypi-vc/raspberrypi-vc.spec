@@ -9,14 +9,14 @@
 #%global debug_package %{nil}
 
 # actually, the date is the date packaged, not the commit date
-%global commit_date  20150327
-%global commit_short 3ef516e
-%global commit_long  3ef516ebc3e26e84e5f590688b8ad62cef8e8baf
+%global commit_date  20150530
+%global commit_short 2598325
+%global commit_long  2598325b534cba4b5f88959714b6c8f279357ef3
 
 # userland tarball directory
-%global commit_userland_date    20150327
-%global commit_short_userland   7650bcb
-%global commit_long_userland    7650bcbc9ba8f1c5e29be7726d184b31c2665c46
+%global commit_userland_date    20150530
+%global commit_short_userland   b834074
+%global commit_long_userland    b834074d0c0d9d7e64c133ab14ed691999cee990
 %global userland_tar ../../SOURCES/raspberrypi-userland-%{commit_short_userland}.tar.gz
 %global userland   raspberrypi-userland-%{commit_short_userland}
 %global userland_build raspberrypi-userland-%{commit_short_userland}/build
